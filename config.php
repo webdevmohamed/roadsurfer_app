@@ -8,5 +8,10 @@ error_reporting(E_ALL);
 require_once 'vendor/autoload.php';
 use Dotenv\Dotenv as Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__);
+echo realpath('.\\');
+echo realpath('./');
+echo realpath('../');
+echo realpath('/');
+
+$dotenv = Dotenv::createImmutable('.\\');
 $dotenv->load();
