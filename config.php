@@ -1,3 +1,6 @@
 <?php
+require_once 'vendor/autoload.php';
+use Dotenv\Dotenv as Dotenv;
 
-define('ROOT_DIR', __DIR__ . '/');
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();

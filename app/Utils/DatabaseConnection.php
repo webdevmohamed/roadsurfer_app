@@ -1,9 +1,6 @@
 <?php
 
 require_once 'config.php';
-require_once 'vendor/autoload.php';
-
-use Dotenv\Dotenv as Dotenv;
 
 class DatabaseConnection
 {
@@ -12,10 +9,6 @@ class DatabaseConnection
 
     public function __construct()
     {
-        echo realpath('/');
-        echo realpath('../');
-        $dotenv = Dotenv::createImmutable('../');
-        $dotenv->load();
         $this->connection = $this->connect();
     }
 
