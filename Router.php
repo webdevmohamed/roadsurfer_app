@@ -19,12 +19,12 @@ class Router
         if (preg_match($pattern, $currentUri)) {
             $controllerName = self::$routes[$path];
             $filename = $controllerName . '.php';
-            echo 'app' . DIRECTORY_SEPARATOR .
-                'Controllers' . DIRECTORY_SEPARATOR .
+            echo 'app' . '\\' .
+                'Controllers' . '\\' .
                 $filename;
             require_once
-                'app' . DIRECTORY_SEPARATOR .
-                'Controllers' . DIRECTORY_SEPARATOR .
+                'app' . '\\' .
+                'Controllers' . '\\' .
                 $filename;
 
             $controller = new $controllerName();
