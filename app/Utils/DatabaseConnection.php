@@ -12,6 +12,7 @@ class DatabaseConnection
 
     public function __construct()
     {
+        echo ROOT_DIR;
         $dotenv = Dotenv::createImmutable(ROOT_DIR);
         $dotenv->load();
         $this->connection = $this->connect();
