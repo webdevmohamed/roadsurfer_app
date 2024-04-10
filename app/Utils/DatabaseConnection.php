@@ -19,7 +19,7 @@ class DatabaseConnection
 
     private function connect() {
         try {
-            $connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
+            $connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME'], $_ENV['DB_PORT']);
             if ($connection->connect_error) {
                 throw new Exception("Error connecting to the database: " . $connection->connect_error);
             }
