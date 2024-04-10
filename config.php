@@ -13,5 +13,5 @@ echo realpath('./');
 echo realpath('../');
 echo realpath('/');
 
-$dotenv = Dotenv::createImmutable('.\\');
+$dotenv = Dotenv::createImmutable('./');
 $dotenv->load();
