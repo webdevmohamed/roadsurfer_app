@@ -4,7 +4,7 @@ class Router
 {
 
     private static $routes = [
-        '/' => 'IndexController',
+        '/hola' => 'IndexController',
     ];
 
     public static function handle($method = 'GET', $path = '/')
@@ -16,7 +16,7 @@ class Router
         if ($currentMethod !== $method) {
             return false;
         }
-        $root = '/roadsurfer_app';
+        $root = '';
         $pattern = '#^'.$root.$path.'$#siD';
 
         if (preg_match($pattern, $currentUri)) {
