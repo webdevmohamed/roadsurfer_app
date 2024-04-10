@@ -9,6 +9,7 @@ class Router
 
     public static function handle($method = 'GET', $path = '/')
     {
+        echo $path;
         $currentMethod = $_SERVER['REQUEST_METHOD'];
         $currentUri = $_SERVER['REQUEST_URI'];
 
