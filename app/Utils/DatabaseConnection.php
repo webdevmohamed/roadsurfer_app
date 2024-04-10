@@ -12,8 +12,8 @@ class DatabaseConnection
 
     public function __construct()
     {
-        echo realpath(getcwd());
-        $dotenv = Dotenv::createImmutable(realpath(getcwd()));
+        echo realpath('./');
+        $dotenv = Dotenv::createImmutable('./');
         $dotenv->load();
         $this->connection = $this->connect();
     }
