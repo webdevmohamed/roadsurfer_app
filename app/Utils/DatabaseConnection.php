@@ -19,6 +19,7 @@ class DatabaseConnection
     }
 
     private function connect() {
+        echo "entra a conect";
         try {
             $connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME'], $_ENV['DB_PORT']);
             if ($connection->connect_error) {
@@ -26,6 +27,7 @@ class DatabaseConnection
             }
             return $connection;
         } catch (Exception $e) {
+            echo $e->getMessage();
             throw new Exception("Error connecting to the database: " . $e->getMessage());
         }
     }
