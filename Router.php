@@ -12,13 +12,13 @@ class Router
         echo $path;
         $currentMethod = $_SERVER['REQUEST_METHOD'];
         $currentUri = $_SERVER['REQUEST_URI'];
-
+        echo $currentUri;
         if ($currentMethod !== $method) {
             return false;
         }
         $root = '';
         $pattern = '#^'.$root.$path.'$#siD';
-
+        echo $pattern;
         if (preg_match($pattern, $currentUri)) {
             $controllerName = self::$routes[$path];
             $filename = $controllerName . '.php';
