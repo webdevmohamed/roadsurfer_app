@@ -62,13 +62,20 @@ function showFilteredActivities(data, dataTableContainer) {
 
 function showAlert(response, alertsContainer) {
     let alertClass = 'alert-danger';
+    // Since statusText not working properly in production, i decided to generate the error messages in client side
+    let errorMessage = 'Oops, something went wrong in the server, please try again later'
+    if (response.status === 400) {
+        errorMessage = 'The value sent to perform the filter is not valid, please try again later'
+    }
     if (response.status === 404) {
+        errorMessage = 'There are no fitness activities belonging to the selected activity type'
         alertClass = 'alert-warning';
     }
+
     const template = document.getElementById('failed-alert-template');
     const clon = template.content.cloneNode(true);
     const alert = clon.querySelector('.alert');
     alert.classList.add(alertClass);
-    alert.innerText = response.statusText;
+    alert.innerText = errorMessage;
     alertsContainer.appendChild(alert);
 }

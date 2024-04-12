@@ -22,11 +22,9 @@ class FitnessActivityController
     public function filterActivities()
     {
         try {
-            $protocol = ($_SERVER['SERVER_PROTOCOL'] ?? 'HTTP/1.0');
             $selectedTypeId = $_POST['ActivityTypeId'];
             if ($selectedTypeId === '' || !is_numeric($selectedTypeId)) {
                 http_response_code(400);
-                header($protocol . ' 400 The value sent to perform the filter is not valid, please try again later');
                 exit();
             }
 
@@ -34,13 +32,13 @@ class FitnessActivityController
             $filteredActivities = $fitnessActivityModel->getActivitiesByTypeId($selectedTypeId);
 
             if (empty($filteredActivities)) {
-                header($protocol . ' 404 There are no fitness activities belonging to the selected activity type');
+                http_response_code(404);
                 exit();
             }
 
             echo json_encode($filteredActivities);
         } catch (Exception $e) {
-            header($protocol . ' 500 Oops, something went wrong in the server, please try again later');
+            http_response_code(500);
         }
 
     }
