@@ -1,7 +1,5 @@
 <?php
 
-require_once 'config.php';
-
 class DatabaseConnection
 {
 
@@ -13,7 +11,6 @@ class DatabaseConnection
     }
 
     private function connect() {
-        echo "entra a conect";
         try {
             $connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME'], $_ENV['DB_PORT']);
             if ($connection->connect_error) {
