@@ -21,7 +21,6 @@ class Router
     {
         $method = $_SERVER['REQUEST_METHOD'];
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
         $path = str_replace($_ENV['URL_PREFIX'], "", $path);
 
         if (isset(self::$routes[$method][$path])) {
@@ -36,7 +35,6 @@ class Router
                 exit();
             }
         }
-
         http_response_code(404);
         echo '404 Not Found';
         exit();

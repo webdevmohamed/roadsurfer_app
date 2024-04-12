@@ -1,11 +1,9 @@
 RewriteEngine On
 RewriteBase /
 
-# Redirigir todas las solicitudes que no correspondan a recursos estáticos a index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(?!public/)(.*)$ index.php [L]
 
-# No aplicar ninguna reescritura a las solicitudes de recursos estáticos en public_html/
 RewriteCond %{REQUEST_URI} ^/public/
 RewriteRule ^ - [L]

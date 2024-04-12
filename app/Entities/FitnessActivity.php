@@ -1,15 +1,15 @@
 <?php
 
-class FitnessActivity
+class FitnessActivity implements JsonSerializable
 {
 
-    private $id;
-    private $activity_type;
-    private $activity_date;
-    private $name;
-    private $distance;
-    private $distance_unit;
-    private $elapsed_time;
+    private int $id;
+    private string $activity_type;
+    private string $activity_date;
+    private string $name;
+    private float $distance;
+    private string $distance_unit;
+    private string $elapsed_time;
 
 
     public function __construct()
@@ -17,120 +17,129 @@ class FitnessActivity
 
     }
 
-
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getActivityType()
+    public function getActivityType(): string
     {
         return $this->activity_type;
     }
 
     /**
-     * @param mixed $activity_type
+     * @param string $activity_type
      */
-    public function setActivityType($activity_type): void
+    public function setActivityType(string $activity_type): void
     {
         $this->activity_type = $activity_type;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getActivityDate()
+    public function getActivityDate(): string
     {
         return $this->activity_date;
     }
 
     /**
-     * @param mixed $activity_date
+     * @param string $activity_date
      */
-    public function setActivityDate($activity_date): void
+    public function setActivityDate(string $activity_date): void
     {
         $this->activity_date = $activity_date;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
-    public function setName($name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getDistance()
+    public function getDistance(): float
     {
         return $this->distance;
     }
 
     /**
-     * @param mixed $distance
+     * @param float $distance
      */
-    public function setDistance($distance): void
+    public function setDistance(float $distance): void
     {
         $this->distance = $distance;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getDistanceUnit()
+    public function getDistanceUnit(): string
     {
         return $this->distance_unit;
     }
 
     /**
-     * @param mixed $distance_unit
+     * @param string $distance_unit
      */
-    public function setDistanceUnit($distance_unit): void
+    public function setDistanceUnit(string $distance_unit): void
     {
         $this->distance_unit = $distance_unit;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getElapsedTime()
+    public function getElapsedTime(): string
     {
         return $this->elapsed_time;
     }
 
     /**
-     * @param mixed $elapsed_time
+     * @param string $elapsed_time
      */
-    public function setElapsedTime($elapsed_time): void
+    public function setElapsedTime(string $elapsed_time): void
     {
         $this->elapsed_time = $elapsed_time;
     }
 
 
-
-
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'activity_type' => $this->activity_type,
+            'activity_date' => $this->activity_date,
+            'name' => $this->name,
+            'distance' => $this->distance,
+            'distance_unit' => $this->distance_unit,
+            'elapsed_time' => $this->elapsed_time,
+        ];
+    }
 }
