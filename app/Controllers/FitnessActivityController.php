@@ -18,8 +18,13 @@ class FitnessActivityController
         require 'app/Views/index.view.php';
     }
 
+    private function responseJSON($response)
+    {
+        echo json_encode($response);
+    }
 
-    public function filterActivities()
+
+    public function getFilteredActivities()
     {
         try {
             $selectedTypeId = $_POST['ActivityTypeId'];
@@ -36,7 +41,29 @@ class FitnessActivityController
                 exit();
             }
 
-            echo json_encode($filteredActivities);
+            $this->responseJSON($filteredActivities);
+
+        } catch (Exception $e) {
+            http_response_code(500);
+        }
+
+    }
+
+
+    public function getDistanceAccumulated()
+    {
+        try {
+            $selectedTypeId = $_POST['ActivityTypeId'];
+            if ($selectedTypeId === '' || !is_numeric($selectedTypeId)) {
+                http_response_code(400);
+                exit();
+            }
+
+            $fitnessActivityModel = new FitnessActivityModel();
+            $distanceAcumulated = $fitnessActivityModel->getDistanceAccumulatedByTypeId($selectedTypeId);
+
+            $this->responseJSON(['distanceAccumulated' => $distanceAcumulated]);
+
         } catch (Exception $e) {
             http_response_code(500);
         }

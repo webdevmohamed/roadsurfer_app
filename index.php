@@ -5,6 +5,7 @@ require_once 'core/Router.php';
 
 Router::get('/', 'FitnessActivityController@index');
 
-Router::post('/filterByActivityType', 'FitnessActivityController@filterActivities');
+Router::post('/getFilteredActivities', 'FitnessActivityController@getFilteredActivities');
+Router::post('/getDistanceAccumulated', 'FitnessActivityController@getDistanceAccumulated');
 
 Router::handle();

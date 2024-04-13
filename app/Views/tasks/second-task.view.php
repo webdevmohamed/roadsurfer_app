@@ -2,13 +2,18 @@
     <h3 class="mb-4">Filter activities by Activity Type</h3>
         <div class="d-flex align-items-center filter-container">
             <label for="activity-type" class="label-select">Select an Activity Type:</label>
-            <select id="activity-type" class="form-select">
-                <?php foreach ($acticityTypes as $acticityType): ?>
-                    <option value="<?= $acticityType->getId() ?>"><?= $acticityType->getName() ?></option>
-                <?php endforeach; ?>
+            <select id="activity-type" class="form-select" <?php if (empty($acticityTypes)): ?> disabled <?php endif; ?> >
+                <?php if (empty($acticityTypes)): ?>
+                    <option selected>There is no Activity Types to filter by</option>
+                <?php else: ?>
+                    <?php foreach ($acticityTypes as $acticityType): ?>
+                        <option value="<?= $acticityType->getId() ?>"><?= $acticityType->getName() ?></option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
             </select>
             <div class="button-container ms-3">
-                <button onclick="secondTask()" class="btn btn-primary">Filter</button>
+                <button onclick="secondTask()" class="btn btn-primary" <?php if (empty($acticityTypes)): ?> disabled <?php endif; ?> >Filter</button>
             </div>
         </div>
 

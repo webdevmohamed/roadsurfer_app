@@ -1,9 +1,9 @@
-var baseUrl = window.location.href;
+var secondTaskView = document.getElementById('second-task')
 
 async function secondTask() {
-    const selectedTypeId = document.getElementById('activity-type').value;
-    const alertsContainer = document.getElementsByClassName('alerts')[0];
-    const dataTableContainer = document.getElementsByClassName('data-table')[0];
+    const selectedTypeId = secondTaskView.querySelector('#activity-type').value;
+    const alertsContainer = secondTaskView.querySelector('.alerts');
+    const dataTableContainer = secondTaskView.querySelector('.data-table');
     alertsContainer.innerHTML = '';
     dataTableContainer.innerHTML = '';
 
@@ -12,23 +12,12 @@ async function secondTask() {
         const data = await response.json();
         showFilteredActivities(data, dataTableContainer);
     } else {
-        showAlert(response, alertsContainer);
+        showAlert(response, alertsContainer, secondTaskView);
     }
-
-}
-
-async function getFilteredActivitiesById(selectedTypeId) {
-    return await fetch(`${baseUrl}filterByActivityType`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: `ActivityTypeId=${selectedTypeId}`
-    })
 }
 
 function showFilteredActivities(data, dataTableContainer) {
-    const template = document.getElementById("data-table-template");
+    const template = secondTaskView.querySelector("#data-table-template");
     const table = template.content.cloneNode(true);
     const tbody = table.querySelector("tbody");
     const thead = table.querySelector("thead");
@@ -58,24 +47,4 @@ function showFilteredActivities(data, dataTableContainer) {
     });
 
     dataTableContainer.appendChild(table);
-}
-
-function showAlert(response, alertsContainer) {
-    let alertClass = 'alert-danger';
-    // Since statusText not working properly in production, i decided to generate the error messages in client side
-    let errorMessage = 'Oops, something went wrong in the server, please try again later'
-    if (response.status === 400) {
-        errorMessage = 'The value sent to perform the filter is not valid, please try again later'
-    }
-    if (response.status === 404) {
-        errorMessage = 'There are no fitness activities belonging to the selected activity type'
-        alertClass = 'alert-warning';
-    }
-
-    const template = document.getElementById('failed-alert-template');
-    const clon = template.content.cloneNode(true);
-    const alert = clon.querySelector('.alert');
-    alert.classList.add(alertClass);
-    alert.innerText = errorMessage;
-    alertsContainer.appendChild(alert);
 }
