@@ -1,0 +1,11 @@
+#fourth-task .filter-container  {
+    width: 70%;
+}
+
+#fourth-task .filter-container .label-select  {
+    width: 20%;
+}
+
+#fourth-task .filter-container .form-select  {
+    width: 40%;
+}

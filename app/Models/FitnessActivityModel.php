@@ -1,6 +1,7 @@
 <?php
 
 require_once 'app/Utils/DatabaseConnection.php';
+require_once 'app/Utils/DateTimeFormater.php';
 require 'app/Entities/FitnessActivity.php';
 
 class FitnessActivityModel
@@ -63,6 +64,27 @@ class FitnessActivityModel
         }
 
         return round($distanceAccumulatedKm, 3);
+    }
+
+    public function getTotalElapsedTimeByTypeId($selectedTypeId)
+    {
+        $filteredActivities = $this->getActivitiesByTypeId($selectedTypeId);
+        if (empty($filteredActivities)) {
+            http_response_code(404);
+            exit();
+        }
+
+        $totalSeconds = 0;
+        foreach ($filteredActivities as $activity) {
+            $elapsedTime = $activity->getElapsedTime();
+            list($hours, $minutes, $seconds) = explode(':', $elapsedTime);
+            $activityTotalElapsedTime = (int)($hours * 3600) + (int)($minutes * 60) + (int)$seconds;
+            $totalSeconds += $activityTotalElapsedTime;
+        }
+
+        $dateTimeFormater = new DateTimeFormater();
+
+        return $dateTimeFormater->secondsToTime($totalSeconds);
     }
 
 

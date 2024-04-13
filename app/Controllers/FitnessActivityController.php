@@ -70,5 +70,25 @@ class FitnessActivityController
 
     }
 
+    public function getTotalElapsedTime()
+    {
+        try {
+            $selectedTypeId = $_POST['ActivityTypeId'];
+            if ($selectedTypeId === '' || !is_numeric($selectedTypeId)) {
+                http_response_code(400);
+                exit();
+            }
+
+            $fitnessActivityModel = new FitnessActivityModel();
+            $totalElapsedTime = $fitnessActivityModel->getTotalElapsedTimeByTypeId($selectedTypeId);
+
+            $this->responseJSON(['totalElapsedTime' => $totalElapsedTime]);
+
+        } catch (Exception $e) {
+            http_response_code(500);
+        }
+
+    }
+
 
 }

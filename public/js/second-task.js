@@ -1,4 +1,4 @@
-var secondTaskView = document.getElementById('second-task')
+const secondTaskView = document.getElementById('second-task')
 
 async function secondTask() {
     const selectedTypeId = secondTaskView.querySelector('#activity-type').value;
@@ -7,12 +7,13 @@ async function secondTask() {
     alertsContainer.innerHTML = '';
     dataTableContainer.innerHTML = '';
 
-    const response = await getFilteredActivitiesById(selectedTypeId);
+    const response = await fetchDataByTypeId(selectedTypeId, 'getFilteredActivities');
     if (response.ok) {
         const data = await response.json();
         showFilteredActivities(data, dataTableContainer);
     } else {
-        showAlert(response, alertsContainer, secondTaskView);
+        const errorMessage = getErrorMessage(response);
+        showAlert(alertsContainer, secondTaskView, errorMessage);
     }
 }
 

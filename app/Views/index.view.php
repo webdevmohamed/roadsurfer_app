@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./public/css/layouts/footer.css">
     <link rel="stylesheet" href="./public/css/tasks/second-task.css">
     <link rel="stylesheet" href="./public/css/tasks/third-task.css">
+    <link rel="stylesheet" href="./public/css/tasks/fourth-task.css">
     <title>Roadsurfer app</title>
 </head>
     <body>
@@ -19,6 +20,7 @@
             <?php include 'tasks/first-task.view.php' ?>
             <?php include 'tasks/second-task.view.php' ?>
             <?php include 'tasks/third-task.view.php' ?>
+            <?php include 'tasks/fourth-task.view.php' ?>
         </div>
 
         <?php include 'layouts/footer.view.php' ?>
@@ -29,5 +31,6 @@
         <script src="./public/js/common.js" defer></script>
         <script src="./public/js/second-task.js" defer></script>
         <script src="./public/js/third-task.js" defer></script>
+        <script src="./public/js/fourth-task.js" defer></script>
     </body>
 </html>
