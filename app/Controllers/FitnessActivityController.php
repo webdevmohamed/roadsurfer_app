@@ -1,22 +1,9 @@
 <?php
 
 require_once 'app/Models/FitnessActivityModel.php';
-require 'app/Models/ActivityTypeModel.php';
 
 class FitnessActivityController
 {
-
-    public function index()
-    {
-        $fitnessActivityModel = new FitnessActivityModel();
-        $fitnessActivities = $fitnessActivityModel->getAllFitnessActivities();
-
-        $activityTypesModel = new ActivityTypeModel();
-        $acticityTypes = $activityTypesModel->getAllActivityTypes();
-
-
-        require 'app/Views/index.view.php';
-    }
 
     private function responseJSON($response)
     {
@@ -27,8 +14,8 @@ class FitnessActivityController
     public function getFilteredActivities()
     {
         try {
-            $selectedTypeId = $_POST['ActivityTypeId'];
-            if ($selectedTypeId === '' || !is_numeric($selectedTypeId)) {
+            $selectedTypeId = $_POST['ActivityTypeId'] ?? null;
+            if (!$selectedTypeId || !is_numeric($selectedTypeId)) {
                 http_response_code(400);
                 exit();
             }
@@ -53,8 +40,8 @@ class FitnessActivityController
     public function getDistanceAccumulated()
     {
         try {
-            $selectedTypeId = $_POST['ActivityTypeId'];
-            if ($selectedTypeId === '' || !is_numeric($selectedTypeId)) {
+            $selectedTypeId = $_POST['ActivityTypeId'] ?? null;
+            if (!$selectedTypeId || !is_numeric($selectedTypeId)) {
                 http_response_code(400);
                 exit();
             }
@@ -73,8 +60,8 @@ class FitnessActivityController
     public function getTotalElapsedTime()
     {
         try {
-            $selectedTypeId = $_POST['ActivityTypeId'];
-            if ($selectedTypeId === '' || !is_numeric($selectedTypeId)) {
+            $selectedTypeId = $_POST['ActivityTypeId'] ?? null;
+            if (!$selectedTypeId || !is_numeric($selectedTypeId)) {
                 http_response_code(400);
                 exit();
             }

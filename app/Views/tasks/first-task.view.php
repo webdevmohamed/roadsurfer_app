@@ -8,13 +8,13 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">id</th>
-                <th scope="col">Activity type</th>
-                <th scope="col">Activity date</th>
-                <th scope="col">Activity name</th>
+                <th scope="col">ID</th>
+                <th scope="col">Activity Type</th>
+                <th scope="col">Activity Date</th>
+                <th scope="col">Activity Name</th>
                 <th scope="col">Distance</th>
-                <th scope="col">Distance unit</th>
-                <th scope="col">Elapsed time</th>
+                <th scope="col">Distance Unit</th>
+                <th scope="col">Elapsed Time</th>
 
             </tr>
             </thead>
