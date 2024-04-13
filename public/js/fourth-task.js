@@ -1,10 +1,10 @@
 const fourthTaskView = document.getElementById('fourth-task')
 
 async function fourthTask() {
+    showLoadingButton(fourthTaskView)
     const selectedTypeId = fourthTaskView.querySelector('#activity-type').value;
+    const selectedTypeName = fourthTaskView.querySelector('#activity-type option:checked').text;
     const alertsContainer = fourthTaskView.querySelector('.alerts');
-    alertsContainer.innerHTML = '';
-
     const response = await fetchDataByTypeId(selectedTypeId, 'getTotalElapsedTime');
     if (response.ok) {
         const data = await response.json();
@@ -12,13 +12,16 @@ async function fourthTask() {
         let message = '';
         let alertClass = 'alert-danger';
         if (totalElapsedTime) {
-            message = `The total elapsed time for the activity type selected is <b>${totalElapsedTime}</b>`
+            message = `The total elapsed time for "${selectedTypeName}" is <b>${totalElapsedTime}</b>`
             alertClass = 'alert-success';
         }
+        clearContainers(alertsContainer)
         showAlert(alertsContainer, fourthTaskView, message, alertClass);
     } else  {
-        const errorMessage = getErrorMessage(response);
+        const errorMessage = getErrorMessage(response, selectedTypeName);
+        clearContainers(alertsContainer)
         showAlert(alertsContainer, fourthTaskView, errorMessage);
     }
+    hideLoadingButton(fourthTaskView)
 
 }

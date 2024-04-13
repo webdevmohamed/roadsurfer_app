@@ -2,13 +2,13 @@ const baseUrl = window.location.href;
 const STATUS_BAD_REQUEST = 400;
 const STATUS_NOT_FOUND = 404;
 
-function getErrorMessage(response) {
+function getErrorMessage(response, selectedTypeName) {
     // Since statusText not working properly in production, i decided to generate the error messages in client side
     switch (response.status) {
         case STATUS_BAD_REQUEST:
             return 'The value sent to perform the filter is not valid, please try again later';
         case STATUS_NOT_FOUND:
-            return 'There are no fitness activities belonging to the selected activity type';
+            return `There are no fitness activities belonging to "${selectedTypeName}"`;
         default:
             return 'Oops, something went wrong in the server, please try again later';
     }
@@ -33,4 +33,21 @@ function showAlert(alertsContainer, taskView, message, alertClass = 'alert-dange
     alert.classList.add(alertClass);
     alert.innerHTML = message;
     alertsContainer.appendChild(alert);
+}
+
+function clearContainers(alertsContainer, dataTableContainer = false) {
+    alertsContainer.innerHTML = '';
+    if (dataTableContainer) {
+        dataTableContainer.innerHTML = '';
+    }
+}
+
+function showLoadingButton(taskView) {
+    taskView.querySelector('#submit-button').classList.add('d-none');
+    taskView.querySelector('#loading-button').classList.remove('d-none');
+}
+
+function hideLoadingButton(taskView) {
+    taskView.querySelector('#loading-button').classList.add('d-none');
+    taskView.querySelector('#submit-button').classList.remove('d-none');
 }

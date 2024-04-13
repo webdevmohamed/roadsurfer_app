@@ -1,20 +1,23 @@
 const secondTaskView = document.getElementById('second-task')
 
 async function secondTask() {
+    showLoadingButton(secondTaskView)
     const selectedTypeId = secondTaskView.querySelector('#activity-type').value;
+    const selectedTypeName = secondTaskView.querySelector('#activity-type option:checked').text;
     const alertsContainer = secondTaskView.querySelector('.alerts');
     const dataTableContainer = secondTaskView.querySelector('.data-table');
-    alertsContainer.innerHTML = '';
-    dataTableContainer.innerHTML = '';
-
     const response = await fetchDataByTypeId(selectedTypeId, 'getFilteredActivities');
     if (response.ok) {
         const data = await response.json();
+        clearContainers(alertsContainer, dataTableContainer)
         showFilteredActivities(data, dataTableContainer);
     } else {
-        const errorMessage = getErrorMessage(response);
+        const errorMessage = getErrorMessage(response, selectedTypeName);
+        clearContainers(alertsContainer, dataTableContainer)
         showAlert(alertsContainer, secondTaskView, errorMessage);
     }
+    hideLoadingButton(secondTaskView)
+
 }
 
 function showFilteredActivities(data, dataTableContainer) {

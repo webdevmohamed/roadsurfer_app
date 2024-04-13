@@ -13,7 +13,11 @@
 
         </select>
         <div class="button-container ms-3">
-            <button onclick="fourthTask()" class="btn btn-primary" <?php if (empty($acticityTypes)): ?> disabled <?php endif; ?> >Display</button>
+            <button id="loading-button" class="btn btn-primary d-none" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Loading...
+            </button>
+            <button onclick="fourthTask()" id="submit-button" type="button" class="btn btn-primary" <?php if (empty($acticityTypes)): ?> disabled <?php endif; ?> >Display</button>
         </div>
     </div>
 

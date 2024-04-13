@@ -1,10 +1,10 @@
 const thirdTaskView = document.getElementById('third-task')
 
 async function thirdTask() {
+    showLoadingButton(thirdTaskView)
     const selectedTypeId = thirdTaskView.querySelector('#activity-type').value;
+    const selectedTypeName = thirdTaskView.querySelector('#activity-type option:checked').text;
     const alertsContainer = thirdTaskView.querySelector('.alerts');
-    alertsContainer.innerHTML = '';
-
     const response = await fetchDataByTypeId(selectedTypeId, 'getDistanceAccumulated');
     if (response.ok) {
         const data = await response.json();
@@ -12,14 +12,17 @@ async function thirdTask() {
         let message = '';
         let alertClass = 'alert-danger';
         if (distanceAccumulated) {
-            message = `The total distance accumulated for the activity type selected is <b>${distanceAccumulated} KM</b>`
+            message = `The total distance accumulated for "${selectedTypeName}" is <b>${distanceAccumulated} KM</b>`
             alertClass = 'alert-success';
         }
 
+        clearContainers(alertsContainer)
         showAlert(alertsContainer, thirdTaskView, message, alertClass);
     } else  {
-        const errorMessage = getErrorMessage(response);
+        const errorMessage = getErrorMessage(response, selectedTypeName);
+        clearContainers(alertsContainer)
         showAlert(alertsContainer, thirdTaskView, errorMessage);
     }
+    hideLoadingButton(thirdTaskView)
 
 }
