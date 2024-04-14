@@ -44,7 +44,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="elapsed-time" class="form-label">Elapsed Time</label>
+            <label for="elapsed-time" class="form-label">Elapsed Time (HH:MM:SS)</label>
             <input type="time" step="1" name="elapsed-time" class="form-control" id="elapsed-time" required>
         </div>
         <div class="d-grid">
