@@ -28,17 +28,23 @@ class ActivityTypeModel
         return $activityTypes;
     }
 
-    public function isActivityTypeAlreadyAdded($activityTypeName)
+    public function doesActivityTypeExists($value, $field)
     {
-        $escapedActivityTypeName = $this->connection->real_escape_string($activityTypeName);
-        $sql = "SELECT COUNT(*) AS count FROM activity_types WHERE name = '$escapedActivityTypeName'";
+        if (is_numeric($value)) {
+            $condition = "$field = $value";
+        } else {
+            $escapedValue = $this->connection->real_escape_string($value);
+            $condition = "$field = '$escapedValue'";
+        }
+
+        $sql = "SELECT COUNT(*) AS count FROM activity_types WHERE $condition";
         $result = $this->connection->query($sql);
         $row = $result->fetch_assoc();
         return $row['count'] > 0;
     }
 
 
-    public function  addActivityTypeByName($activityTypeName)
+    public function addActivityType($activityTypeName)
     {
         $escapedActivityTypeName = $this->connection->real_escape_string($activityTypeName);
         $sql = "INSERT INTO activity_types (name) VALUES ('$escapedActivityTypeName')";

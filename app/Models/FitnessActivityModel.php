@@ -27,13 +27,13 @@ class FitnessActivityModel
     {
         $sql = "SELECT f.id, a.name as activity_type, f.activity_date, f.name, f.distance, f.distance_unit, f.elapsed_time 
                 FROM fitness_activities f, activity_types a
-                WHERE f.activity_type_id = a.id and a.id = " . $typeId;
+                WHERE f.activity_type_id = a.id and a.id = $typeId";
         return $this->getActivities($sql);
     }
 
-    public function getDistanceAccumulatedByTypeId($selectedTypeId)
+    public function getDistanceAccumulatedByTypeId($typeId)
     {
-        $filteredActivities = $this->getActivitiesByTypeId($selectedTypeId);
+        $filteredActivities = $this->getActivitiesByTypeId($typeId);
         if (empty($filteredActivities)) {
             http_response_code(404);
             exit();
@@ -66,9 +66,9 @@ class FitnessActivityModel
         return round($distanceAccumulatedKm, 3);
     }
 
-    public function getTotalElapsedTimeByTypeId($selectedTypeId)
+    public function getTotalElapsedTimeByTypeId($typeId)
     {
-        $filteredActivities = $this->getActivitiesByTypeId($selectedTypeId);
+        $filteredActivities = $this->getActivitiesByTypeId($typeId);
         if (empty($filteredActivities)) {
             http_response_code(404);
             exit();
@@ -104,6 +104,25 @@ class FitnessActivityModel
             $fitnessActivities[] = $activity;
         }
         return $fitnessActivities;
+    }
+
+    public function addFitnessActivity($fitnessActivity)
+    {
+        $activityTypeId = $fitnessActivity->getActivityType();
+        $activityDate = $fitnessActivity->getActivityDate();
+        $activityName = $this->connection->real_escape_string($fitnessActivity->getName());
+        $distance = $fitnessActivity->getDistance();
+        $distanceUnit = $fitnessActivity->getDistanceUnit();
+        $elapsedTime = $fitnessActivity->getElapsedTime();
+
+        $sql = "INSERT INTO fitness_activities (activity_type_id, activity_date, name, distance, distance_unit, elapsed_time) 
+        VALUES ($activityTypeId, '$activityDate', '$activityName', $distance, '$distanceUnit', '$elapsedTime')";
+
+        if ($this->connection->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

@@ -6,16 +6,15 @@ class ActivityTypeController
 
     public function addActivityType()
     {
-
         $activityTypeName = $_POST['activity-type-name'] ?? null;
-        if (!$activityTypeName) {
-            $_SESSION['addActivityTypeMessage'] = 'Please enter a valid data';
+        if (!$activityTypeName || empty(trim($activityTypeName))) {
+            $_SESSION['addActivityTypeMessage'] = 'Please enter a valid Activity Type name.';
             $_SESSION['addActivityTypeAlertClass'] = 'danger';
         } else {
             $activityTypesModel = new ActivityTypeModel();
-            $alreadyAdded = $activityTypesModel->isActivityTypeAlreadyAdded($activityTypeName);
+            $alreadyAdded = $activityTypesModel->doesActivityTypeExists($activityTypeName, 'name');
             if (!$alreadyAdded) {
-                if ($activityTypesModel->addActivityTypeByName($activityTypeName)) {
+                if ($activityTypesModel->addActivityType($activityTypeName)) {
                     $_SESSION['addActivityTypeMessage'] = 'The Activity Type has been added correctly.';
                     $_SESSION['addActivityTypeAlertClass'] = 'success';
                 } else {
@@ -28,7 +27,8 @@ class ActivityTypeController
             }
         }
 
-        header("Location: ./create" );
+        header("Location: {$_SERVER['HTTP_REFERER']}#add-activity-type" );
+        exit();
     }
 
 }

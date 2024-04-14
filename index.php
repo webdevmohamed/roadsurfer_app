@@ -13,5 +13,6 @@ Router::post('/getDistanceAccumulated', 'FitnessActivityController@getDistanceAc
 Router::post('/getTotalElapsedTime', 'FitnessActivityController@getTotalElapsedTime');
 
 Router::post('/addActivityType', 'ActivityTypeController@addActivityType');
+Router::post('/addFitnessActivity', 'FitnessActivityController@addFitnessActivity');
 
 Router::handle();
