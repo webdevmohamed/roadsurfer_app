@@ -1,6 +1,6 @@
-<div id="fourth-task" class="mb-5">
+<div id="fourth-task" class="task mb-5">
     <h3 class="mb-4">Display the total elapsed time for activities by Activity Type</h3>
-    <div class="d-flex align-items-center filter-container">
+    <div class="d-flex filter-container">
         <label for="activity-type" class="label-select">Select an Activity Type:</label>
         <select id="activity-type" class="form-select" <?php if (empty($acticityTypes)): ?> disabled <?php endif; ?> >
             <?php if (empty($acticityTypes)): ?>

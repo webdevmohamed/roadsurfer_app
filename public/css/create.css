@@ -1,0 +1,13 @@
+@media screen and (max-width: 991px) {
+    #create-forms-container  {
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    #create-forms-container #add-fitness-activity,
+    #create-forms-container #add-activity-type {
+        width: 100% !important;
+    }
+
+
+}

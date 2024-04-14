@@ -12,9 +12,9 @@ async function secondTask() {
         clearContainers(alertsContainer, dataTableContainer)
         showFilteredActivities(data, dataTableContainer);
     } else {
-        const errorMessage = getErrorMessage(response, selectedTypeName);
+        const {alertClass, message} = getErrorMessage(response, selectedTypeName);
         clearContainers(alertsContainer, dataTableContainer)
-        showAlert(alertsContainer, secondTaskView, errorMessage);
+        showAlert(alertsContainer, secondTaskView, message, alertClass);
     }
     hideLoadingButton(secondTaskView)
 

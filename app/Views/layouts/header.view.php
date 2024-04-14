@@ -6,7 +6,7 @@
             </a>
             <div class="navbar-nav">
                 <a class="nav-link" href="./create">
-                    <button class="btn btn-dark">Add new Fitness Activity or a new Activity Type</button>
+                    <button class="btn btn-dark">Add a new Fitness Activity or a new Activity Type</button>
                 </a>
             </div>
     </nav>

@@ -1,0 +1,9 @@
+#header {
+    background-color: #6bbbae;
+}
+
+@media screen and (max-width: 767px) {
+    #header .navbar div.container {
+        justify-content: center;
+    }
+}

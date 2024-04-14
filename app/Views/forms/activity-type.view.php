@@ -1,5 +1,4 @@
-<div id="add-fitness-activity" class="col-5">
-
+<div id="add-activity-type" class="col-5">
     <?php if (isset($_SESSION['addActivityTypeMessage'])) { ?>
         <div class="alert alert-<?= $_SESSION['addActivityTypeAlertClass'] ?> alert-dismissible fade show" role="alert">
             <?= $_SESSION['addActivityTypeMessage'] ?>
@@ -11,7 +10,7 @@
     <form action="addActivityType" method="POST">
         <div class="mb-3">
             <label for="activity-type-name" class="form-label">Activity Type Name</label>
-            <input type="text" name="activity-type-name" class="form-control" id="activity-type-name">
+            <input type="text" name="activity-type-name" class="form-control" id="activity-type-name" required>
         </div>
         <div class="d-grid">
             <button type="submit" class="btn btn-primary">Add</button>

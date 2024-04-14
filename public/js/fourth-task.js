@@ -12,15 +12,15 @@ async function fourthTask() {
         let message = '';
         let alertClass = 'alert-danger';
         if (totalElapsedTime) {
-            message = `The total elapsed time for "${selectedTypeName}" is <b>${totalElapsedTime}</b>`
+            message = `The total elapsed time for "${selectedTypeName}" is <b>${totalElapsedTime}</b>.`
             alertClass = 'alert-success';
         }
         clearContainers(alertsContainer)
         showAlert(alertsContainer, fourthTaskView, message, alertClass);
     } else  {
-        const errorMessage = getErrorMessage(response, selectedTypeName);
+        const {alertClass, message} = getErrorMessage(response, selectedTypeName);
         clearContainers(alertsContainer)
-        showAlert(alertsContainer, fourthTaskView, errorMessage);
+        showAlert(alertsContainer, fourthTaskView, message, alertClass);
     }
     hideLoadingButton(fourthTaskView)
 

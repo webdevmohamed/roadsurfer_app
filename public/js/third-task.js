@@ -12,16 +12,16 @@ async function thirdTask() {
         let message = '';
         let alertClass = 'alert-danger';
         if (distanceAccumulated) {
-            message = `The total distance accumulated for "${selectedTypeName}" is <b>${distanceAccumulated} KM</b>`
+            message = `The total distance accumulated for "${selectedTypeName}" is <b>${distanceAccumulated} KM.</b>`
             alertClass = 'alert-success';
         }
 
         clearContainers(alertsContainer)
         showAlert(alertsContainer, thirdTaskView, message, alertClass);
     } else  {
-        const errorMessage = getErrorMessage(response, selectedTypeName);
+        const {alertClass, message} = getErrorMessage(response, selectedTypeName);
         clearContainers(alertsContainer)
-        showAlert(alertsContainer, thirdTaskView, errorMessage);
+        showAlert(alertsContainer, thirdTaskView, message, alertClass);
     }
     hideLoadingButton(thirdTaskView)
 

@@ -6,14 +6,22 @@ function getErrorMessage(response, selectedTypeName) {
     // Since statusText not working properly in production, i decided to generate the error messages in client side
     switch (response.status) {
         case STATUS_BAD_REQUEST:
-            return 'The value sent to perform the filter is not valid, please try again later';
+            return {
+                alertClass: 'alert-danger',
+                message: 'The value sent to perform the filter is not valid, please try again later.'
+            };
         case STATUS_NOT_FOUND:
-            return `There are no fitness activities belonging to "${selectedTypeName}"`;
+            return {
+                alertClass: 'alert-warning',
+                message: `There are no fitness activities belonging to "${selectedTypeName}".`
+            };
         default:
-            return 'Oops, something went wrong in the server, please try again later';
+            return {
+                alertClass: 'alert-danger',
+                message: 'Oops, something went wrong in the server, please try again later.'
+            };
     }
 }
-
 
 async function fetchDataByTypeId(selectedTypeId, apiRoute) {
     return await fetch(`${baseUrl}${apiRoute}`, {
@@ -25,8 +33,7 @@ async function fetchDataByTypeId(selectedTypeId, apiRoute) {
     });
 }
 
-
-function showAlert(alertsContainer, taskView, message, alertClass = 'alert-danger') {
+function showAlert(alertsContainer, taskView, message, alertClass ) {
     const template = taskView.querySelector('#failed-alert-template');
     const clon = template.content.cloneNode(true);
     const alert = clon.querySelector('.alert');
@@ -35,7 +42,7 @@ function showAlert(alertsContainer, taskView, message, alertClass = 'alert-dange
     alertsContainer.appendChild(alert);
 }
 
-function clearContainers(alertsContainer, dataTableContainer = false) {
+function clearContainers(alertsContainer, dataTableContainer ) {
     alertsContainer.innerHTML = '';
     if (dataTableContainer) {
         dataTableContainer.innerHTML = '';

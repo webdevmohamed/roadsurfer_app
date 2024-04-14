@@ -1,0 +1,73 @@
+.task .filter-container  {
+    align-items: center;
+    width: 70%;
+}
+
+.task .filter-container .label-select  {
+    width: 20%;
+}
+
+.task .filter-container .form-select  {
+    width: 40%;
+}
+
+.task .table-container {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+@media screen and (max-width: 1400px) {
+    .task .filter-container  {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .task .filter-container  {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .task .filter-container  {
+        width: 100%;
+    }
+
+    .task .filter-container .label-select  {
+        width: 25%;
+    }
+
+    .task .filter-container .form-select  {
+        width: 60%;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .task .filter-container  {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .task .filter-container .label-select  {
+        width: 100%;
+    }
+
+    .task .filter-container .form-select  {
+        width: 100%;
+    }
+
+    .task .filter-container .button-container {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    .task .filter-container .button-container > button {
+        width: 100%;
+    }
+
+}
+
+
+
