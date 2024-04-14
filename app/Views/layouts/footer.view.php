@@ -2,7 +2,7 @@
     <div class="container d-flex justify-content-around align-items-center">
         <p class="mb-0 fw-bolder">© 2024 Dev by Mohamed</p>
 
-        <a href="/">
+        <a href="./">
             <img src="./public/images/logo.svg" alt="Roadsurfer Logo">
         </a>
     </div>
