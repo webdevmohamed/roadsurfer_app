@@ -3,6 +3,11 @@
 class DateTimeFormater
 {
 
+    /**
+     * Returns a readable string of time, given a number of seconds
+     * @param $seconds
+     * @return string
+     */
     function secondsToTime($seconds) {
         $dateTimeUnix = new DateTime('@0');
         $dateTime = new DateTime("@$seconds");

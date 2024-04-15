@@ -1,5 +1,9 @@
 const fourthTaskView = document.getElementById('fourth-task')
 
+/**
+ * Performs all the functionality of the fourth task
+ * @returns {Promise<void>}
+ */
 async function fourthTask() {
     showLoadingButton(fourthTaskView)
     const selectedTypeId = fourthTaskView.querySelector('#activity-type').value;

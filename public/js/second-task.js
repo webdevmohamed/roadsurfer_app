@@ -1,5 +1,9 @@
 const secondTaskView = document.getElementById('second-task')
 
+/**
+ * Performs all the functionality of the second task
+ * @returns {Promise<void>}
+ */
 async function secondTask() {
     showLoadingButton(secondTaskView)
     const selectedTypeId = secondTaskView.querySelector('#activity-type').value;
@@ -20,6 +24,11 @@ async function secondTask() {
 
 }
 
+/**
+ * Shows the result of the obtained data
+ * @param data
+ * @param dataTableContainer
+ */
 function showFilteredActivities(data, dataTableContainer) {
     const template = secondTaskView.querySelector("#data-table-template");
     const table = template.content.cloneNode(true);

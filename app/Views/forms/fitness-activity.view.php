@@ -4,7 +4,7 @@
             <?= $_SESSION['addFitnessActivityMessage'] ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    <?php session_unset(); } ?>
+    <?php } ?>
 
     <h3 class="mb-4">Add a new Fitness Activity</h3>
     <form action="addFitnessActivity" method="POST">

@@ -2,35 +2,52 @@
 
 require_once 'app/Utils/DatabaseConnection.php';
 require_once 'app/Utils/DateTimeFormater.php';
-require 'app/Entities/FitnessActivity.php';
+require_once 'app/Entities/FitnessActivity.php';
 
 class FitnessActivityModel
 {
 
     private $connection;
 
+    /**
+     * Establishes the connection with the database
+     */
     public function __construct()
     {
         $databaseConnection = new DatabaseConnection();
         $this->connection = $databaseConnection->getConnection();
     }
 
+    /**
+     * Returns array of all the Fitness Activities
+     * @return array
+     */
     public function getAllFitnessActivities()
     {
-        $sql = "SELECT f.id, a.name as activity_type, f.activity_date, f.name, f.distance, f.distance_unit, f.elapsed_time 
+        $sql = "SELECT f.id, a.name AS activity_type, f.activity_date, f.name, f.distance, f.distance_unit, f.elapsed_time 
                 FROM fitness_activities f, activity_types a
-                WHERE f.activity_type_id = a.id";
+                WHERE f.activity_type_id = a.id ORDER BY f.activity_date DESC";
         return $this->getActivities($sql);
     }
 
+    /**
+     * Returns array of the Fitness Activities based on a specific Activity Type
+     * @param $typeId
+     * @return array
+     */
     public function getActivitiesByTypeId($typeId)
     {
-        $sql = "SELECT f.id, a.name as activity_type, f.activity_date, f.name, f.distance, f.distance_unit, f.elapsed_time 
+        $sql = "SELECT f.id, a.name AS activity_type, f.activity_date, f.name, f.distance, f.distance_unit, f.elapsed_time 
                 FROM fitness_activities f, activity_types a
-                WHERE f.activity_type_id = a.id and a.id = $typeId";
+                WHERE f.activity_type_id = a.id AND a.id = $typeId ORDER BY f.activity_date DESC";
         return $this->getActivities($sql);
     }
 
+    /**
+     *  Returns the accumulated distance for activities of a Activity Type
+     * @param $typeId
+     * @return float|void
+     */
     public function getDistanceAccumulatedByTypeId($typeId)
     {
         $filteredActivities = $this->getActivitiesByTypeId($typeId);
@@ -66,6 +83,11 @@ class FitnessActivityModel
         return round($distanceAccumulatedKm, 3);
     }
 
+    /**
+     * Returns the total elapsed time for activities of a Activity Type
+     * @param $typeId
+     * @return string|void
+     */
     public function getTotalElapsedTimeByTypeId($typeId)
     {
         $filteredActivities = $this->getActivitiesByTypeId($typeId);
@@ -88,6 +110,11 @@ class FitnessActivityModel
     }
 
 
+    /**
+     * Returns Activities based on a sql query
+     * @param $sql
+     * @return array
+     */
     private function getActivities($sql)
     {
         $result = $this->connection->query($sql);
@@ -106,6 +133,11 @@ class FitnessActivityModel
         return $fitnessActivities;
     }
 
+    /**
+     * Adds a new Fitness Activity to the database.
+     * @param $fitnessActivity
+     * @return bool
+     */
     public function addFitnessActivity($fitnessActivity)
     {
         $activityTypeId = $fitnessActivity->getActivityType();

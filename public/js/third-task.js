@@ -1,5 +1,9 @@
 const thirdTaskView = document.getElementById('third-task')
 
+/**
+ * Performs all the functionality of the third task
+ * @returns {Promise<void>}
+ */
 async function thirdTask() {
     showLoadingButton(thirdTaskView)
     const selectedTypeId = thirdTaskView.querySelector('#activity-type').value;

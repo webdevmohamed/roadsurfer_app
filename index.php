@@ -1,5 +1,5 @@
 <?php
-
+// Redirects every route to a controller (404 page if the route doesnt exist)
 require_once 'config/config.php';
 require_once 'core/Router.php';
 

@@ -1,19 +1,26 @@
 <?php
 
 require_once 'app/Utils/DatabaseConnection.php';
-require 'app/Entities/ActivityType.php';
+require_once 'app/Entities/ActivityType.php';
 
 class ActivityTypeModel
 {
 
     private $connection;
 
+    /**
+     * Establishes the connection with the database
+     */
     public function __construct()
     {
         $databaseConnection = new DatabaseConnection();
         $this->connection = $databaseConnection->getConnection();
     }
 
+    /**
+     * Returns array of all the Activity Types
+     * @return array
+     */
     public function getAllActivityTypes()
     {
         $sql = "SELECT * FROM activity_types";
@@ -28,6 +35,12 @@ class ActivityTypeModel
         return $activityTypes;
     }
 
+    /**
+     * Returns true or false depending on whether or not it finds the Activity Type with the value assigned to the field
+     * @param $value
+     * @param $field
+     * @return bool
+     */
     public function doesActivityTypeExists($value, $field)
     {
         if (is_numeric($value)) {
@@ -43,7 +56,11 @@ class ActivityTypeModel
         return $row['count'] > 0;
     }
 
-
+    /**
+     * Adds a new Activity Type to the database.
+     * @param $activityTypeName
+     * @return bool
+     */
     public function addActivityType($activityTypeName)
     {
         $escapedActivityTypeName = $this->connection->real_escape_string($activityTypeName);

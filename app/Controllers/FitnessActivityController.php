@@ -11,7 +11,9 @@ class FitnessActivityController
         echo json_encode($response);
     }
 
-
+    /**
+     * Retrieves filtered activities based on a specified Activity Type
+     */
     public function getFilteredActivities()
     {
         try {
@@ -39,6 +41,9 @@ class FitnessActivityController
     }
 
 
+    /**
+     * Retrieves the accumulated distance for activities of a Activity Type
+     */
     public function getDistanceAccumulated()
     {
         try {
@@ -60,6 +65,9 @@ class FitnessActivityController
 
     }
 
+    /**
+     * Retrieves the total elapsed time for activities of a Activity Type
+     */
     public function getTotalElapsedTime()
     {
         try {
@@ -81,6 +89,9 @@ class FitnessActivityController
 
     }
 
+    /**
+     * Adds a new Fitness Activity.
+     */
     public function addFitnessActivity()
     {
         try {

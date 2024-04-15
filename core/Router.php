@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Manages all the app routes and REST API
+ */
 class Router
 {
     private static $routes = [

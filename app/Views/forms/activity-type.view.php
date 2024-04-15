@@ -4,7 +4,7 @@
             <?= $_SESSION['addActivityTypeMessage'] ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    <?php session_unset(); } ?>
+    <?php } ?>
 
     <h3 class="mb-4">Add a new Activity Type</h3>
     <form action="addActivityType" method="POST">

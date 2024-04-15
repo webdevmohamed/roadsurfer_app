@@ -1,9 +1,13 @@
 <?php
+
 require_once 'app/Models/ActivityTypeModel.php';
 
 class ActivityTypeController
 {
 
+    /**
+     * Tries to add a new Activity Type to the database.
+     */
     public function addActivityType()
     {
         $activityTypeName = $_POST['activity-type-name'] ?? null;
